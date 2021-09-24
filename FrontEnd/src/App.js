@@ -23,11 +23,7 @@ const App = () => {
           <Gallerie {...routerProps} searchVal={State} />
         )}
       />
-      <Route
-        path="/details/:movieId"
-        
-        component={Details}
-      />
+      <Route path="/details/:movieId" component={Details} />
 
       <Route path="/tvShows" exact component={Gallerie} />
       <MyFooter />

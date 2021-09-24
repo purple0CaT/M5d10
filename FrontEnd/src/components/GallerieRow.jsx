@@ -4,7 +4,6 @@ import React from "react";
 
 class GallerieRow extends React.Component {
   state = {
-    url: "https://www.omdbapi.com/?apikey=23ae3a68&s=",
     search: this.props.search,
     loading: true,
     library: [],
@@ -12,12 +11,14 @@ class GallerieRow extends React.Component {
 
   // Load Function
   async loadMovie() {
-    this.setState({ loading: true });
+    let url = this.props.search
+      ? `${process.env.REACT_APP_URLFETCH}/media/search/?t=${this.props.search}`
+      : `${process.env.REACT_APP_URLFETCH}/media/`;
     try {
-      let response = await fetch(this.state.url + this.props.search);
+      let response = await fetch(url);
       let data = await response.json();
 
-      this.setState({ library: data.Search, loading: false });
+      this.setState({ library: data, loading: false });
       console.log(this.state.library);
     } catch (err) {
       console.log(err);
@@ -45,9 +46,9 @@ class GallerieRow extends React.Component {
             className="mx-auto my-5"
           />
         ) : (
-          this.state.library
-            .slice(0, 6)
-            .map((mov) => <MovieCard movieId={mov.imdbID} img={mov.Poster} />)
+          this.state.library.map((mov) => (
+            <MovieCard movieId={mov.imdbID} img={mov.Poster} />
+          ))
         )}
       </div>
     );

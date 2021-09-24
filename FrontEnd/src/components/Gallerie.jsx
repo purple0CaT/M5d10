@@ -9,7 +9,6 @@ class Gallerie extends React.Component {
   componentDidUpdate(prev, prevArr) {
     if (prev.searchVal !== this.props.searchVal) {
       this.setState({ search: this.props.searchVal });
-      console.log(this.state.search);
     }
   }
   render() {
@@ -57,15 +56,13 @@ class Gallerie extends React.Component {
         </div>
 
         {/* GALLERIE ROWS */}
-        {this.state.search ? (
+        {this.props.searchVal ? (
           <>
             <GallerieRow search={this.state.search} />
           </>
         ) : (
           <>
-            <GallerieRow search="Harry Potter" />
-            <GallerieRow search="Lord of the Rings" />
-            <GallerieRow search="Hobbit" />
+            <GallerieRow />
           </>
         )}
       </div>

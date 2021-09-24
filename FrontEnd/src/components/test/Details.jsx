@@ -8,19 +8,17 @@ export default function Details({ match }) {
     loadMov();
   }, []);
   const [Movie, setMovie] = useState(null);
-  const [Loading, setLoading] = useState(false);
+  const [Loading, setLoading] = useState(true);
   //   fetching selected movie
   const loadMov = async () => {
-    setLoading(true);
+    let url = `${process.env.REACT_APP_URLFETCH}/media/`;
     try {
-      let response = await fetch(
-        "https://www.omdbapi.com/?apikey=23ae3a68&i=" + match.params.movieId
-      );
+      let response = await fetch(url + match.params.movieId);
       let data = await response.json();
       if (response.ok) {
         setLoading(false);
-        setMovie({ data });
-        console.log({ data });
+        console.log(data);
+        setMovie({ data: data[0] });
       }
     } catch (err) {
       console.log(err);
@@ -53,15 +51,16 @@ export default function Details({ match }) {
                 <p className="font-weight-light">{Movie.data.Plot}</p>
                 <small className="font-weight-bold">{Movie.data.Genre}</small>
                 <small className="font-weight-bold">
-                  <small>Actors: </small>{Movie.data.Actors}
+                  <small>Actors: </small>
+                  {Movie.data.Actors}
                 </small>
                 <small className="font-weight-bold">
-                  <small>Awards: </small>{Movie.data.Awards}
+                  <small>Awards: </small>
+                  {Movie.data.Awards}
                 </small>
                 <small className="font-weight-bold text-muted">
                   Year: {Movie.data.Year}
                 </small>
-
               </Col>
             </Col>
             <CommentArea movieId={match.params.movieId} />

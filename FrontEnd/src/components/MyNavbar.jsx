@@ -29,17 +29,27 @@ class MyNavbar extends React.Component {
     return (
       <>
         <Navbar className="Navbar" variant="dark" collapseOnSelect expand="lg">
-          <Link className='nav-link' to="/">
+          <Link className="nav-link" to="/">
             <img src={Netflix} alt="logo" className="Logo" />
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav>
-              <Link className='nav-link' to="/">Home</Link>
-              <Link className='nav-link' to="/tvShows">TV Shows</Link>
-              <Link className='nav-link' to="/">Movies</Link>
-              <Link className='nav-link' to="/">Recently Added</Link>
-              <Link className='nav-link' to="/">My List</Link>
+              <Link className="nav-link" to="/">
+                Home
+              </Link>
+              <Link className="nav-link" to="/tvShows">
+                TV Shows
+              </Link>
+              <Link className="nav-link" to="/">
+                Movies
+              </Link>
+              <Link className="nav-link" to="/">
+                Recently Added
+              </Link>
+              <Link className="nav-link" to="/">
+                My List
+              </Link>
             </Nav>
             <Nav className="ml-auto pr-3">
               <FormControl
