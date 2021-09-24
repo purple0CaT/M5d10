@@ -7,6 +7,7 @@ import { v2 as cloudinary } from "cloudinary";
 import uniqid from "uniqid";
 import { checkId, checkRevId, postValid, reviewValid } from "./middleWare.js";
 import createHttpError from "http-errors";
+import axios from "axios";
 //=
 const cloudinaryStorage = new CloudinaryStorage({
   cloudinary, //authomatic read cloud URL
@@ -22,6 +23,29 @@ mediaR.get("/", async (req, res, next) => {
   try {
     const medias = await getMedia();
     res.send(medias);
+  } catch (err) {
+    next(err);
+  }
+});
+//= GET SEARCH
+mediaR.get("/search/", async (req, res, next) => {
+  try {
+    let dataOmdb = [];
+    const urlS = process.env.OMDBAPI;
+    // =
+    const medias = await getMedia();
+    const srchTitle = req.query.t;
+    const srchYear = req.query.y;
+    const filtered = medias.filter((med) => med.Title.includes(srchTitle));
+    if (filtered[0]) {
+      res.send(filtered);
+    } else {
+      let respns = await axios.get(`${urlS}&t=${srchTitle}&y={${srchYear}}`);
+      dataOmdb = respns.data;
+      medias.push(dataOmdb);
+      await writeMedia(medias);
+      res.send([dataOmdb]);
+    }
   } catch (err) {
     next(err);
   }
