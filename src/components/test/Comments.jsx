@@ -18,7 +18,7 @@ const Comments = ({ _id, author, comment, rate, asin, loadComments }) => {
   // delete coment
   const deleteCom = async (e) => {
     succDelete();
-    let url = `${process.env.REACT_APP_URLFETCH}/media/${State.id}/reviews`;
+    let url = `${process.env.REACT_APP_URLFETCH}/media/${_id}/reviews`;
     try {
       const response = await fetch(url, {
         method: "DELETE",
