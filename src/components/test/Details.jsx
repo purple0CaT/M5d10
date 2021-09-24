@@ -63,7 +63,7 @@ export default function Details({ match }) {
                   Year: {Movie.data.Year}
                 </small>
                 <a
-                  href={`${process.env.URLFETCH}/media/${moviesId}/pdf`}
+                  href={`${process.env.REACT_APP_URLFETCH}/media/${moviesId}/pdf`}
                   className="btn btn-dark my-auto"
                 >
                   Download PDF
