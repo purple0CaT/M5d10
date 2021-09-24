@@ -8,6 +8,7 @@ import uniqid from "uniqid";
 import { checkId, checkRevId, postValid, reviewValid } from "./middleWare.js";
 import createHttpError from "http-errors";
 import axios from "axios";
+import { getPdfStream } from "./pdf.js";
 //=
 const cloudinaryStorage = new CloudinaryStorage({
   cloudinary, //authomatic read cloud URL
@@ -179,6 +180,24 @@ mediaR.delete("/:revId/reviews", checkRevId, async (req, res, next) => {
     const reviewUpd = reviews.filter((rev) => rev._id == req.params.revId);
     await writeReviews(reviewUpd);
     res.status(200).send("Deleted!");
+  } catch (err) {
+    next(err);
+  }
+});
+mediaR.get("/:mediaId/pdf", checkId, async (req, res, next) => {
+  try {
+    const medias = await getMedia();
+    const reviews = await getReviews();
+
+    const mediaF = medias.filter((med) => med.imdbID == req.params.mediaId);
+    const reviewF = reviews.filter(
+      (rev) => rev.elementId == req.params.mediaId
+    );
+    res.setHeader(
+      "Content-Disposition",
+      `atachment; filename=${mediaF[0].Title}.pdf`
+    );
+    await getPdfStream(mediaF[0], reviewF, res);
   } catch (err) {
     next(err);
   }
