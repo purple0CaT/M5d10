@@ -38,17 +38,8 @@ class MyNavbar extends React.Component {
               <Link className="nav-link" to="/">
                 Home
               </Link>
-              <Link className="nav-link" to="/tvShows">
-                TV Shows
-              </Link>
-              <Link className="nav-link" to="/">
-                Movies
-              </Link>
-              <Link className="nav-link" to="/">
-                Recently Added
-              </Link>
-              <Link className="nav-link" to="/">
-                My List
+              <Link className="nav-link" to="/newmovie">
+                Add movie
               </Link>
             </Nav>
             <Nav className="ml-auto pr-3">

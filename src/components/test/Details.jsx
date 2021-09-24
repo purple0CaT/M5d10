@@ -36,7 +36,7 @@ export default function Details({ match }) {
       ) : (
         Movie && (
           <Row>
-            <Col xs="8" className="p-5 d-flex flex-wrap">
+            <Col xs="12" md="8" className="p-5 d-flex flex-wrap h-100">
               <Col xs="12">
                 {" "}
                 <h2 className="text-white font-weight-light">
@@ -44,11 +44,11 @@ export default function Details({ match }) {
                 </h2>
                 <hr className="bg-light" />
               </Col>
-              <Col xs="6">
-                <img src={Movie.data.Poster} alt="" />
+              <Col xs="12" md="6" className="h-100">
+                <img src={Movie.data.Poster} className="w-75" alt="" />
               </Col>
               {/* movie details */}
-              <Col xs="6" className="text-white d-flex flex-column h-100">
+              <Col xs="12" md="6" className="text-white d-flex flex-column">
                 <p className="font-weight-light">{Movie.data.Plot}</p>
                 <small className="font-weight-bold">{Movie.data.Genre}</small>
                 <small className="font-weight-bold">

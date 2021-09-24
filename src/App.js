@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import CommentArea from "./components/test/CommentArea";
 import Test from "./components/test";
 import Details from "./components/test/Details";
+import NewMov from "./components/NewMov";
 
 const App = () => {
   const [State, setState] = useState(null);
@@ -25,7 +26,7 @@ const App = () => {
       />
       <Route path="/details/:movieId" component={Details} />
 
-      <Route path="/tvShows" exact component={Gallerie} />
+      <Route path="/newmovie" exact component={NewMov} />
       <MyFooter />
     </Router>
   );

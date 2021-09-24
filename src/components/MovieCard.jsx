@@ -19,7 +19,7 @@ class MovieCard extends React.Component {
       <>
         <Link
           to={"/details/" + this.props.movieId}
-          className="col-2 my-3"
+          className="col-sm-12 col-md-2 my-3"
           key={this.props.movieId}
           value={this.props.movieId}
           onClick={() => {

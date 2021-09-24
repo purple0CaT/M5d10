@@ -31,7 +31,7 @@ const CommentArea = ({ movieId }) => {
   };
 
   return (
-    <Col xs="4" className="p-5 text-center">
+    <Col  xs="12" md='4' className="p-5 text-center">
       <h2 className="text-white font-weight-light">Reviews</h2>
       <hr className="bg-light" />
       {State.loading ? (

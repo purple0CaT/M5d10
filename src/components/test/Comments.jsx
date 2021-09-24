@@ -8,28 +8,27 @@ const Comments = ({ _id, author, comment, rate, asin, loadComments }) => {
   const [State, setState] = useState({ id: _id, loadDel: false });
 
   // loaders
-  const succDelete = () => {
-    return setState({ ...State, loadDel: !State.loadDel });
+  const succDelete = (val) => {
+    return setState({ ...State, loadDel: val });
   };
   const reloadCom = () => {
-    return loadComments;
+    succDelete(false);
+    loadComments();
   };
 
   // delete coment
-  const deleteCom = async (e) => {
-    succDelete();
-    let url = `${process.env.REACT_APP_URLFETCH}/media/${_id}/reviews`;
+  const deleteCom = async (comId) => {
+    succDelete(true);
+    let url = `${process.env.REACT_APP_URLFETCH}/media/${comId}/reviews`;
     try {
       const response = await fetch(url, {
         method: "DELETE",
       });
-      const data = await response.json();
       if (response.ok) {
-        // reloadCom();
-        return loadComments();
+        reloadCom();
       }
     } catch (e) {
-      succDelete();
+      succDelete(false);
       console.error(e);
     }
   };
@@ -54,7 +53,7 @@ const Comments = ({ _id, author, comment, rate, asin, loadComments }) => {
               className="mx-auto text-center"
             />
           )}
-          <a className="delete" onClick={() => deleteCom()}>
+          <a className="delete" onClick={() => deleteCom(_id)}>
             {" "}
             <AiFillCloseCircle />{" "}
           </a>
