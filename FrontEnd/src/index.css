@@ -1,0 +1,121 @@
+:root {
+  --home-bg-color: #141414;
+  --account-bg-color: #f3f3f3;
+  --text-color: #fff;
+  --primary-color: #e40a13;
+  --secondary-color: #929292;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--home-bg-color) !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.Logo {
+  height: 48px;
+  padding: 12px;
+}
+
+.Navbar {
+  background-color: var(--home-bg-color) !important
+}
+
+.btn {
+  color: var(--account-bg-color) !important
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: var(--account-bg-color) !important
+}
+
+
+/* Gallery */
+
+a {
+  cursor: pointer;
+}
+
+.bg-black {
+  background-color:var(--home-bg-color) !important;
+}
+
+.genre-details {
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.iconSortBtn {
+  background-color: unset;
+  color: #b1b1b198;
+  border: 1px solid #b1b1b198;
+  display: flex;
+  vertical-align: middle;
+  justify-content: center;
+  padding: 0.4rem;
+  transition: 0.3s;
+}
+
+.iconSortBtn:hover {
+  color: #fff;
+  border: 1px solid #fff;
+}
+/* DropDown Genres */
+.dropdownMenu > button {
+  background-color: var(--home-bg-color) !important;
+  border: 1px solid #b1b1b198;
+}
+.dropdownMenu > button:hover {
+  background-color: var(--home-bg-color) !important;
+  border: 1px solid #b1b1b198;
+}
+.dropdownMenu > button:active {
+  background-color: var(--home-bg-color) !important;
+  border: 1px solid #b1b1b198 !important;
+  box-shadow: unset !important;
+}
+.dropdownMenu > button:focus {
+  background-color: var(--home-bg-color) !important;
+  border: 1px solid #b1b1b198 !important;
+  box-shadow: unset !important;
+}
+
+/* Movie Cards */
+.movieCard {
+  text-decoration: unset;
+  color: #b1b1b198 !important;
+  transition: 0.3s;
+}
+.movieCard:hover {
+  position: relative;
+  transform: scale(1.1) !important;
+  z-index: 999;
+}
+
+/* Footer */ 
+
+.navbar-nav {
+  font-size: 14px;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+
+/* Break */
+
+.break {
+  padding-top: 3rem;
+}

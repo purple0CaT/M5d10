@@ -1,0 +1,92 @@
+body, #root {
+  height: 100vh;
+}
+#footer a {
+  color: rgb(207, 207, 207) !important;
+  text-decoration: none;
+  margin: 0;
+  transition: 0.3s;
+}
+h6 {
+  margin: 0 !important;
+}
+#footer a:hover {
+  text-decoration: none !important;
+  color: white !important;
+  text-shadow: 0 0 5px white;
+}
+#footer {
+    background-color: rgb(114, 114, 114);
+    width: 100%;
+    margin: 0;
+}
+
+.comments{
+display: flex;
+flex-direction: column;
+ background-color: white ;
+ position: absolute;
+ width: 100%;
+ padding: 0 0.6rem;
+ left: 0;
+ margin-top: 1rem;
+ border-radius: 3px;
+ border: 1px solid rgba(128, 128, 128, 0.274);
+ transition: 1s;
+ z-index: 999;
+}
+.comment-bg {
+  border-radius: 20px;
+  background-color: rgba(243, 243, 243, 0.664) !important;
+  padding: 0.5rem 0;
+  overflow: hidden;
+}
+.delete{
+  border: unset;
+  min-height: 1rem;
+  min-width: 1rem;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  left: 0.2rem;
+  color: white;
+  transition: 0.3s !important;
+  background-color: rgb(253, 94, 94);
+}
+.delete svg{
+  transition: 0.5s !important;
+  color: rgb(253, 94, 94) !important;
+  display: none;
+}
+.delete:hover svg{
+  transform: scale(0.8);
+  color: white !important;
+  display: block;
+}
+.delete:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  border:0px solid rgb(253, 94, 94);
+
+}
+input {
+  border-radius: 1rem !important;
+}
+button {
+  border-radius: 2rem !important;
+  padding: 0.5rem auto!important;
+
+}
+#cards {
+  border-bottom-left-radius: 1rem !important;
+  border-bottom-right-radius: 1rem !important;
+}
+hr {
+  border: 1px solid rgba(0, 0, 0, 0.178) !;
+}
+
+.pickedBook {
+  background-color: rgba(0, 255, 213, 0.089) !important;
+  border: unset;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.205);
+}
