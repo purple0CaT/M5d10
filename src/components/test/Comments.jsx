@@ -12,26 +12,22 @@ const Comments = ({ _id, author, comment, rate, asin, loadComments }) => {
     return setState({ ...State, loadDel: !State.loadDel });
   };
   const reloadCom = () => {
-    return loadComments();
+    return loadComments;
   };
 
   // delete coment
   const deleteCom = async (e) => {
     succDelete();
+    let url = `${process.env.REACT_APP_URLFETCH}/media/${State.id}/reviews`;
     try {
-      const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/comments/" + State.id,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTFjZjcwZDJkNTI2MjAwMTViNmRjOTkiLCJpYXQiOjE2Mjk5ODUyNzMsImV4cCI6MTYzMTE5NDg3M30.XnwP2w8HYgNw7WtHh0tP8haV9jofgQ_UQ9xJOsb01C4",
-          },
-        }
-      );
+      const response = await fetch(url, {
+        method: "DELETE",
+      });
       const data = await response.json();
-      succDelete();
-      reloadCom();
+      if (response.ok) {
+        // reloadCom();
+        return loadComments();
+      }
     } catch (e) {
       succDelete();
       console.error(e);
@@ -42,14 +38,15 @@ const Comments = ({ _id, author, comment, rate, asin, loadComments }) => {
       {
         <div
           key={State.id + rate}
-          className="d-flex flex-column comment-bg mb-1 position-relative del-hover"
+          className="d-flex flex-column comment-bg mb-1 position-relative del-hover comment"
         >
-          <small>Asin: {asin}</small>
           <small className="font-weight-bold">{author}</small>
-          <small>{comment}</small>
+          <p className="m-0">{comment}</p>
           <small className="font-weight-bold">
-            Rate: {Array.from({ length: rate }).map((x) => "⭐️")}
+            Rate:{" "}
+            {Array.from({ length: rate }).map((x) => (rate > 2 ? "⭐️" : "🍅"))}
           </small>
+          <small>Asin: {asin}</small>
           {State.loadDel && (
             <Spinner
               animation="border"

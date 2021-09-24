@@ -6,7 +6,6 @@ const AddComent = ({ asin, bookName, loadComments }) => {
   // STATES
   const [CommentSend, setCommentSend] = useState({
     comment: "",
-    author: "",
     rate: 1,
     elementId: asin,
   });
@@ -14,14 +13,14 @@ const AddComent = ({ asin, bookName, loadComments }) => {
     loadSend: false,
     sendSuccess: false,
     loadWarn: false,
-    err: null
+    err: null,
   });
   // FUNCTIONS
   //   INPUT COMMENT
   const comentInput = (e, comentNam) => {
     setCommentSend({
       ...CommentSend,
-      [comentNam]: e.target.value
+      [comentNam]: e.target.value,
     });
   };
   // Sending alerts
@@ -40,8 +39,12 @@ const AddComent = ({ asin, bookName, loadComments }) => {
   };
   // warning
   const loadWarn = (error) => {
-    console.log(error)
-    setState({ ...State, loadWarn: true, err: error.status+' '+ error.statusText });
+    console.log(error);
+    setState({
+      ...State,
+      loadWarn: true,
+      err: error.status + " " + error.statusText,
+    });
   };
   // Set empty
   const emptyVal = () => {
@@ -58,19 +61,12 @@ const AddComent = ({ asin, bookName, loadComments }) => {
   const sendComment = async (e) => {
     e.preventDefault();
     loadAlert();
+    let url = `${process.env.REACT_APP_URLFETCH}/media/${asin}/reviews`;
     try {
-      const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/comments/",
-        {
-          method: "POST",
-          body: JSON.stringify(CommentSend),
-          headers: {
-            "Content-type": "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTFjZjcwZDJkNTI2MjAwMTViNmRjOTkiLCJpYXQiOjE2Mjk5ODUyNzMsImV4cCI6MTYzMTE5NDg3M30.XnwP2w8HYgNw7WtHh0tP8haV9jofgQ_UQ9xJOsb01C4",
-          },
-        }
-      );
+      const response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(CommentSend),
+      });
       if (response.ok) {
         loadComments();
         setState({ ...State, loadSend: false });
@@ -79,7 +75,7 @@ const AddComent = ({ asin, bookName, loadComments }) => {
         loadWarn(response);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
       loadWarn();
       emptyVal();
       loadAlert();
@@ -89,27 +85,15 @@ const AddComent = ({ asin, bookName, loadComments }) => {
     <>
       {/* FORM */}
       {
-        <form className="text-white" onSubmit={sendComment} key={asin + CommentSend.author}>
+        <form className="text-white" onSubmit={sendComment} key={asin + 123}>
           <Form.Group>
-            <Form.Label>Author</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="...author"
-              value={CommentSend.author}
-              onChange={(e) => {
-                comentInput(e, "author");
-              }}
-              
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Comment</Form.Label>
+            <Form.Label>Review</Form.Label>
             <Form.Control
               type="text"
               placeholder="...comment"
               value={CommentSend.comment}
               onChange={(e) => {
-                comentInput(e, "comment");
+                setCommentSend({ ...CommentSend, comment: e.target.value });
               }}
               required
             />
@@ -121,7 +105,7 @@ const AddComent = ({ asin, bookName, loadComments }) => {
               placeholder="...rate"
               value={CommentSend.rate}
               onChange={(e) => {
-                comentInput(e, "rate");
+                setCommentSend({ ...CommentSend, rate: e.target.value });
               }}
               required
             />
