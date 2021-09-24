@@ -50,7 +50,7 @@ const CommentArea = ({ movieId }) => {
         })
       )}
       <hr />
-      <AddComent loadComments={() => loadComments()} asin={State.asin} />
+      <AddComent loadComments={() => loadComments()} asin={movieId} />
     </Col>
   );
 };

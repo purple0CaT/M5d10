@@ -9,11 +9,12 @@ export default function Details({ match }) {
   }, []);
   const [Movie, setMovie] = useState(null);
   const [Loading, setLoading] = useState(true);
+  const [moviesId, setmoviesId] = useState(match.params.movieId);
   //   fetching selected movie
   const loadMov = async () => {
     let url = `${process.env.REACT_APP_URLFETCH}/media/`;
     try {
-      let response = await fetch(url + match.params.movieId);
+      let response = await fetch(url + moviesId);
       let data = await response.json();
       if (response.ok) {
         setLoading(false);
@@ -47,7 +48,7 @@ export default function Details({ match }) {
                 <img src={Movie.data.Poster} alt="" />
               </Col>
               {/* movie details */}
-              <Col xs="6" className="text-white d-flex flex-column">
+              <Col xs="6" className="text-white d-flex flex-column h-100">
                 <p className="font-weight-light">{Movie.data.Plot}</p>
                 <small className="font-weight-bold">{Movie.data.Genre}</small>
                 <small className="font-weight-bold">
@@ -61,9 +62,15 @@ export default function Details({ match }) {
                 <small className="font-weight-bold text-muted">
                   Year: {Movie.data.Year}
                 </small>
+                <a
+                  href={`${process.env.URLFETCH}/media/${moviesId}/pdf`}
+                  className="btn btn-dark my-auto"
+                >
+                  Download PDF
+                </a>
               </Col>
             </Col>
-            <CommentArea movieId={match.params.movieId} />
+            <CommentArea movieId={moviesId} />
           </Row>
         )
       )}

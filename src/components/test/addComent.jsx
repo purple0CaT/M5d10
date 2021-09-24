@@ -66,6 +66,9 @@ const AddComent = ({ asin, bookName, loadComments }) => {
       const response = await fetch(url, {
         method: "POST",
         body: JSON.stringify(CommentSend),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
       if (response.ok) {
         loadComments();
